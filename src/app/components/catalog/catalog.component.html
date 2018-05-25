@@ -1,0 +1,52 @@
+<div class="base-container" [ngClass]="{'fixed-position' : showShoppingCart}">
+  <nav class="navbar navbar-light">
+    <button class="navbar-toggler">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="divider"></div>
+    <a class="navbar-brand" href="#">
+      <img id="logo-image" alt="Shirtastic" src="{{logoPath}}">
+    </a>
+
+
+      <div style="float: right;"><button type="button" class="primary-btn">NEW DESIGN</button></div>
+      <div class="divider"></div>
+
+      <div><div class="icon-basket" (click)="toggleShoppingCart()"></div></div>
+        
+      <div><span class="items-counter" (click)="toggleShoppingCart()">{{shoppingCartItemsCount}}</span></div>
+
+
+
+
+  </nav>
+  <div class="container">
+    <ngb-tabset class="catalog-tabs">
+      <ngb-tab title="All Designs">
+        <ng-template ngbTabContent>
+          <div class="row">
+            <app-shirt *ngFor="let shirt of shirts | async" [shirt]="shirt"></app-shirt>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Men">
+        <ng-template ngbTabContent>
+          <div class="row">
+            <app-shirt *ngFor="let shirt of shirts | async | filterByGender:'M'" [shirt]="shirt"></app-shirt>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Women" [disabled]="false">
+        <ng-template ngbTabContent>
+          <div class="row">
+            <app-shirt *ngFor="let shirt of shirts | async | filterByGender:'F'" [shirt]="shirt"></app-shirt>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>
+<div class="overlay" [hidden]="!showShoppingCart" (click)="toggleShoppingCart()"></div>
+<div class="shopping-cart-panel" [hidden]="!showShoppingCart">
+  <app-shopping-cart (showShoppingCartChange)="toggleShoppingCart()"></app-shopping-cart>
+</div>

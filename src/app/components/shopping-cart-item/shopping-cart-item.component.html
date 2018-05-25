@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <div class="image-frame">
+          <img class="img-fluid rounded" src="{{item.shirt.imagePath}}" alt="Sample photo">
+        </div>
+      </div>
+      <div class="col-8 no-right-padding">
+        <div class="container">
+          <div class="row">
+            <h4 class="card-title">{{item.shirt.name}}</h4>
+            <button type="button" class="btn-circle" (click)="removeCartItem(item)">&times;</button>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p>{{item.shirt.description}}</p>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-12">
+                <app-size-select class="size-select" [selectedSize]="item.size"></app-size-select>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <input type="text" class="quantity form-control form-control-sm" value="{{item.quantity}}" (input)="changeQuantity($event.data)">
+              <strong><span class="price-font">@ {{item.shirt.price | currency}}</span></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+  

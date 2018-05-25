@@ -1,0 +1,80 @@
+@media only screen and (min-width: 500px) {
+    .container {
+        padding-left: 100px;
+    }
+}
+nav {
+    box-shadow: 0 5px 6px -6px #777;
+}
+
+.navbar {
+    justify-content: initial;
+}
+
+.navbar-toggler {
+    border: 0;
+}
+
+.navbar-brand {
+    padding: 0;
+    margin-left: -5px;
+}
+
+.divider {
+    height: 54px;
+    width: 1px;
+    margin: 6px 20px;
+    background: #CDCDCD;
+  }
+
+.container {
+    padding-top: 15px;
+    max-width: 100%;
+    background-color: #EEEEEE;
+}
+
+#logo-image {
+    width: 242px;
+}
+
+.shopping-cart-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1041;
+}
+
+.overlay {
+    position: fixed;
+    z-index: 1040;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(112, 112, 105, 0.637)
+}
+
+.fixed-position {
+    position: fixed;
+}
+
+.icon-basket {
+    width: 30px;
+    height: 23px;
+    margin-top: 5px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.items-counter {
+    cursor: pointer;
+}
+
+.no-left-padding {
+    padding-left: 0;
+}
+
+.no-right-padding {
+    padding-right: 0;
+}

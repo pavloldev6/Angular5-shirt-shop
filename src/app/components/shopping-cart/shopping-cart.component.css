@@ -1,0 +1,47 @@
+
+.shopping-cart-container {
+    max-width: 385px;
+    background-color: #F0F0F0;
+    padding: 10px;
+    height: 100%;
+    overflow: auto;
+}
+
+.shopping-cart-title {
+    color: #274686;
+    font-size: 26px;
+    display: inline-block;
+
+}
+
+.float-right {
+    justify-content: right;
+}
+
+.subtotal-price {
+    font-size: 24px;
+}
+
+.subtotal {
+    font-size: 14px;
+}
+
+.icon-basket {
+    width: 30px;
+    height: 23px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.items-counter {
+    cursor: pointer;
+}
+
+.no-left-padding {
+    padding-left: 0;
+}
+
+.no-items-message {
+    font-size: 14px;
+    text-align: center;
+}

@@ -1,0 +1,14 @@
+<div class="card text-center">
+  <img class="img-fluid" src="{{shirt.imagePath}}" alt="Sample photo">
+  <h4 class="card-title">{{shirt.name}}</h4>
+  <p>{{shirt.description}}</p>
+  <div class="container">
+    <div class="row">
+      <a class="icon-basket col-2" (click)="addToBasket(shirt)"></a>
+      <div class="text col-8">
+        <strong>{{shirt.price | currency}}</strong>
+      </div>
+      <div class="icon-edit col-2"></div>
+    </div>
+  </div>
+</div>
