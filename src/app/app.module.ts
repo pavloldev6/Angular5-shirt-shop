@@ -57,7 +57,8 @@ const routes: Routes = [
     MatTabsModule,
     NgbModule.forRoot(),
     CoreModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

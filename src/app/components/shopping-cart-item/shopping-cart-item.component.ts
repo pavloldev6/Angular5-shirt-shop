@@ -4,6 +4,7 @@ import { ShoppingItem } from '../../shared/shopping-item';
 import { ShirtSize } from '../../shared/shirt-size';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-cart-item',
@@ -14,10 +15,17 @@ export class ShoppingCartItemComponent implements OnInit {
 
   @Input() item: ShoppingItem;
   @Output() quantityChange = new EventEmitter();
+  @Output() formReady = new EventEmitter<FormGroup>();
+  shoppingItemForm: FormGroup;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.shoppingItemForm = this.fb.group({
+      size: new FormControl(this.item.size, [Validators.required]),
+      quantity: new FormControl(this.item.quantity, [Validators.required])
+    });
+    this.formReady.emit(this.shoppingItemForm);
   }
 
   changeQuantity(q) {

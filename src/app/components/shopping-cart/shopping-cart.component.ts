@@ -3,6 +3,7 @@ import { Shirt } from '../../shared/shirt';
 import { ShoppingItem } from '../../shared/shopping-item';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
 import { Observable, Subscription } from 'rxjs';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -16,7 +17,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   subtotal: number;
   @Output() showShoppingCartChange = new EventEmitter<boolean>();
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  shoppingCartForm: FormGroup;
+
+  constructor(private shoppingCartService: ShoppingCartService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.subtotal = 0;
@@ -24,14 +27,12 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       this.shoppingCartItems = items;
       this.subtotal = this.calculateSubtotal();
     });
+    this.shoppingCartForm = this.fb.group({
+      shoppingItems: this.fb.array([
 
-    // this.shoppingCartItems = this.shoppingCartService.getShoppingCartItems()
-    //   .reduce((array, item) => {
-    //     array.push(item);
-    //     this.subtotal += item.shirt.price;
-    //     return array;
-    //   }, []);
-    // this.subtotal = this.calculateSubtotal();
+      ])
+    });
+
   }
 
   ngOnDestroy() {
@@ -52,4 +53,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     this.showShoppingCartChange.emit(false);
   }
 
+  formInitialized(name: string, form: FormGroup) {
+    const items = this.shoppingCartForm.get('shoppingItems') as FormArray;
+    items.push(form);
+    //this.shoppingCartForm.setControl(name, form);
+  }
 }

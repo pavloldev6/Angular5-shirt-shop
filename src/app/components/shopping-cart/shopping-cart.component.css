@@ -1,8 +1,9 @@
 
 .shopping-cart-container {
-    max-width: 385px;
+    width: 385px;
     background-color: #F0F0F0;
-    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
     height: 100%;
     overflow: auto;
 }
@@ -10,8 +11,9 @@
 .shopping-cart-title {
     color: #274686;
     font-size: 26px;
-    display: inline-block;
-
+    font-weight: 800;
+    margin-right: 84px;
+    margin-left: 15px;
 }
 
 .float-right {
@@ -29,11 +31,31 @@
 .icon-basket {
     width: 30px;
     height: 23px;
-    margin-top: 5px;
-    cursor: pointer;
+    margin-top: 2px;
+    margin-right: 15px;
 }
 
 .items-counter {
+    background-color: #10A2DC;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.shopping-cart-header {
+    margin-top: 22px;
+}
+
+.shopping-cart-header .shopping-cart-btn {
+    margin-top: 5px !important;
+    margin-right: -5px !important;
+}
+
+.shopping-cart-btn-row {
+    height: 30px;
     cursor: pointer;
 }
 
@@ -45,3 +67,6 @@
     font-size: 14px;
     text-align: center;
 }
+
+
+

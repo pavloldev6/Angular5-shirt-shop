@@ -1,24 +1,22 @@
 <div class="base-container" [ngClass]="{'fixed-position' : showShoppingCart}">
   <nav class="navbar navbar-light">
-    <button class="navbar-toggler">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="divider"></div>
-    <a class="navbar-brand" href="#">
-      <img id="logo-image" alt="Shirtastic" src="{{logoPath}}">
-    </a>
-
-
-      <div style="float: right;"><button type="button" class="primary-btn">NEW DESIGN</button></div>
+    <div class="row nav-toggle-btn">
+      <button class="navbar-toggler mr-2">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="divider"></div>
-
-      <div><div class="icon-basket" (click)="toggleShoppingCart()"></div></div>
-        
-      <div><span class="items-counter" (click)="toggleShoppingCart()">{{shoppingCartItemsCount}}</span></div>
-
-
-
-
+      <a class="navbar-brand" href="#">
+        <img id="logo-image" alt="Shirtastic" src="{{logoPath}}">
+      </a>
+    </div>
+    <div class="row cart-btn-container">
+        <button type="button" class="primary-btn nav-btn">NEW DESIGN</button>
+        <div class="divider"></div>
+        <div class="row cart-btn" (click)="toggleShoppingCart()">
+            <div class="icon-basket"></div>
+            <div class="items-counter">{{shoppingCartItemsCount}}</div>
+          </div>
+    </div> 
   </nav>
   <div class="container">
     <ngb-tabset class="catalog-tabs">

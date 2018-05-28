@@ -7,7 +7,6 @@
 
 .card-title {
     display: inline-block;
-    float: left;
 }
 
 .card-title, .price-font {
@@ -15,7 +14,7 @@
 }
 
 .row .row{
-    min-height: 30px;
+    max-height: 40px;
     justify-content: space-between;
 }
 
@@ -42,6 +41,13 @@ input.quantity {
     border-radius: 4px;
     color: #274686;
     display: inline;
+    font-size: 12px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .col-4, .col-12 {
@@ -61,6 +67,10 @@ input.quantity {
     background-color: #10A2DC;
     color: #FFFFFF;
     outline: none;
+}
+
+.data-rows {
+    padding-left: 10px;
 }
 
 .no-right-padding {

@@ -1,28 +1,33 @@
 <div class="shopping-cart-container">
-  <div class="container">
-    <div class="row">
-      <div class="col-9">
-        <h2 class="shopping-cart-title">Shopping Cart</h2>
-      </div>
-      <div class="col-1 no-left-padding" (click)="closeShoppingCart()">
-        <div class="icon-basket"></div>
-      </div>
-      <div class="col-2" (click)="closeShoppingCart()">
-        <span class="items-counter">{{shoppingCartItems?.length || 0}}</span>
+  <form [formGroup]="shoppingCartForm" novalidate>
+    <div class="row shopping-cart-header">
+      <div class="col-xs-8 shopping-cart-title">Shopping Cart</div>
+      <div class="col-xs-3 shopping-cart-btn" (click)="closeShoppingCart()">
+        <div class="row shopping-cart-btn-row">
+          <div class="icon-basket"></div>
+          <div class="items-counter">{{shoppingCartItems?.length || 0}}</div>
+        </div>
       </div>
     </div>
-  </div>
-  <hr>
-  <div *ngIf="shoppingCartItems?.length > 0">
-    <app-shopping-cart-item  *ngFor="let shoppingItem of shoppingCartItems" [item]="shoppingItem" (quantityChange)=changeQuantity($event)></app-shopping-cart-item>
-  </div>
-  <div *ngIf="(shoppingCartItems?.length) === 0" class="no-items-message">
-    No items added
-  </div>
-  <div class="float-right" *ngIf="shoppingCartItems?.length > 0">
-    <strong><span class="subtotal">Subtotal: </span><span class="subtotal-price">{{subtotal | currency}}</span></strong>
-  </div><br>
-  <div class="float-right" *ngIf="shoppingCartItems?.length > 0">
-    <button type="button" class="primary-btn">GO TO SHIPPING</button>
-  </div>
+    <hr>
+    <div *ngIf="shoppingCartItems?.length > 0">
+      <div formArrayName="shoppingItems">
+        <app-shopping-cart-item  *ngFor="let shoppingItem of shoppingCartItems; let i = index;"
+          (formReady)="formInitialized(i, $event)"
+          [item]="shoppingItem" 
+          (quantityChange)=changeQuantity($event)></app-shopping-cart-item>
+      </div>
+    </div>
+    <div *ngIf="(shoppingCartItems?.length) === 0" class="no-items-message">
+      No items added
+    </div>
+    <div class="float-right" *ngIf="shoppingCartItems?.length > 0">
+      <strong><span class="subtotal">Subtotal: </span><span class="subtotal-price">{{subtotal | currency}}</span></strong>
+    </div><br>
+    <div class="float-right" *ngIf="shoppingCartItems?.length > 0">
+      <button type="button" [disabled]="!shoppingCartForm.valid" class="primary-btn">GO TO SHIPPING</button>
+    </div>
+  </form>
 </div>
+
+
