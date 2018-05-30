@@ -27,6 +27,7 @@ import { ShoppingCartItemComponent } from './components/shopping-cart-item/shopp
 import { SizeSelectComponent } from './shared/size-select.component';
 
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 
 
@@ -64,7 +65,8 @@ const routes: Routes = [
     CoreModule,
     FormsModule,
     ReactiveFormsModule,
-    EcoFabSpeedDialModule
+    EcoFabSpeedDialModule,
+    ClickOutsideModule
   ],
   providers: [],
   bootstrap: [AppComponent]

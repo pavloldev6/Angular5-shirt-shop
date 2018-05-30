@@ -1,4 +1,4 @@
-<div class="base-container" [ngClass]="{'fixed-position' : showShoppingCart}">
+<div class="base-container">
   <nav class="navbar navbar-light">
     <div class="row nav-toggle-btn">
       <button class="navbar-toggler mr-2">
@@ -24,6 +24,9 @@
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts" [shirt]="shirt"></app-shirt>
+            <div *ngIf="(shirts?.length) === 0" class="no-designs-message">
+              No designs added
+            </div>
           </div>
         </ng-template>
       </ngb-tab>
@@ -31,6 +34,9 @@
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts | filterByGender:'M'" [shirt]="shirt"></app-shirt>
+            <div *ngIf="(shirts?.length) === 0" class="no-designs-message">
+              No designs added
+            </div>
           </div>
         </ng-template>
       </ngb-tab>
@@ -38,6 +44,9 @@
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts | filterByGender:'F'" [shirt]="shirt"></app-shirt>
+            <div *ngIf="(shirts?.length) === 0" class="no-designs-message">
+              No designs added
+            </div>
           </div>
         </ng-template>
       </ngb-tab>

@@ -1,5 +1,5 @@
 <div class="card text-center">
-  <div class="img-view" (mouseenter)="actionButtonsShown = true" (mouseleave)="actionButtonsShown = false">
+  <div class="img-view" (click)="actionButtonsShown = !actionButtonsShown" (clickOutside)="actionButtonsShown = false">
     <img [ngClass]="{'shifted': actionButtonsShown}" class="img-fluid" src="{{shirt.imagePath}}" alt="Sample photo">
     <div class="actions-container" [hidden]="!actionButtonsShown">
       <button type="button" class="primary-btn" (click)="edit(shirt)">EDIT</button>
@@ -14,7 +14,8 @@
       <div class="col-2">
           <eco-fab-speed-dial #sizesFab [(open)]="open"
            [direction]="direction" [animationMode]="animationMode"
-           (mouseenter)="sizesFab.open = true" (mouseleave)="sizesFab.open = false">
+           (click)="sizesFab.open = !sizesFab.open"
+           (clickOutside)="sizesFab.open = false">
               <eco-fab-speed-dial-trigger>
                 <div mat-fab class="trigger-btn">
                   <div class="trigger-btn-icon icon-basket"></div>

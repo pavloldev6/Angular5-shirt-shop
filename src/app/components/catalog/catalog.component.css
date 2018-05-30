@@ -34,7 +34,7 @@ nav {
 }
 
 .shopping-cart-panel {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
@@ -104,4 +104,11 @@ nav {
 
 .nav-btn {
     margin-right: 20px;
+}
+
+.no-designs-message {
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    padding: 30px;
 }
