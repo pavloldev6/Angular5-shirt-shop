@@ -9,43 +9,48 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 export class ShoppingCartService {
 
     private shoppingItems: ShoppingItem[] = [];
-    private _shoppingItems: BehaviorSubject<ShoppingItem[]>  = new BehaviorSubject<ShoppingItem[]>([]);
+    private _shoppingItemsSubject: BehaviorSubject<ShoppingItem[]>  = new BehaviorSubject<ShoppingItem[]>([]);
+    private lastUsedId: number;
 
     constructor(private shirtService: ShirtService) {
 
     }
 
     private setShoppingCartItems() {
-        this._shoppingItems.next(this.shoppingItems);
+        this._shoppingItemsSubject.next(this.shoppingItems);
     }
 
     getShoppingCartItems(): Observable<ShoppingItem[]> {
-        // if (!this._shoppingItems) {
-        //     this._shoppingItems = [];
+        // if (!this._shoppingItemsSubject) {
+        //     this._shoppingItemsSubject = [];
 
         //     const shirts: Shirt[] = this.shirtService.getShoppingCartShirts();
         //     for (const shirt of shirts) {
-        //         this._shoppingItems.push(new ShoppingItem(shirt, 1, ShirtSize.Small));
+        //         this._shoppingItemsSubject.push(new ShoppingItem(shirt, 1, ShirtSize.Small));
         //     }
         // }
         // return Observable.from(this.shoppingItems);
-        return this._shoppingItems.asObservable();
+        return this._shoppingItemsSubject.asObservable();
     }
 
-    addToShoppingCart(shirt: Shirt, shirtSize?: ShirtSize): any {
+    addToShoppingCart(shirt: Shirt, shirtSize: ShirtSize): any {
         const quantity = 1; // default quantity
-        const size = (shirtSize) ? shirtSize : ShirtSize.Small;
 
         if (!this.shoppingItems) {
             this.shoppingItems = [];
         }
 
-        //check if this exact shirt already added to shopping cart, increment quantity if yes
-        let idx: number = this.shoppingItems.findIndex(si => si.shirt.id === shirt.id);
+        if (!this.lastUsedId) {
+            this.lastUsedId = 0;
+        }
+
+        // check if this exact shirt with the same size
+        // already added to shopping cart, increment quantity if yes
+        let idx: number = this.shoppingItems.findIndex(si => si.shirt.id === shirt.id && si.size === shirtSize);
         if (idx !== -1) {
             this.shoppingItems[idx].quantity++;
         } else {
-            const shoppingItem: ShoppingItem = new ShoppingItem(shirt, quantity, size);
+            const shoppingItem: ShoppingItem = new ShoppingItem(++this.lastUsedId, shirt, quantity, shirtSize);
             this.shoppingItems.push(shoppingItem);
         }
         this.setShoppingCartItems();
@@ -62,7 +67,7 @@ export class ShoppingCartService {
     }
 
     removeFromShoppingCart(item: ShoppingItem): any {
-        let idx: number = this.shoppingItems.findIndex(si => si.shirt.id === item.shirt.id);
+        let idx: number = this.shoppingItems.findIndex(si => si.id === item.id);
         if (idx !== -1) {
             this.shoppingItems.splice(idx, 1);
             this.setShoppingCartItems();

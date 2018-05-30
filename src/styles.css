@@ -150,7 +150,7 @@ select {
 }
 
 .icon-edit {
-    content: url('/assets/images/icon-edit.svg');   
+    content: url('/assets/images/icon-edit.svg');
 }
 
 .items-counter {
@@ -168,4 +168,15 @@ select {
 .validation-error {
     color: red;
     font-size: 12px;
+}
+
+/* this style is intended for shirt component and was placed here because
+didn't work in shirt component's style */
+eco-fab-speed-dial .eco-fab-speed-dial-container {
+    position: absolute !important;
+    left: 2px !important;
+    bottom: 2px !important;
+    margin-bottom: -40px !important;
+    margin-left: -20px !important;
+    z-index: 1041 !important;
 }

@@ -14,15 +14,19 @@ import { CatalogComponent } from './components/catalog/catalog.component';
 import { ShirtComponent } from './components/shirt/shirt.component';
 
 import { ShirtGenderPipe } from './filters/shirt-filter';
-// For material tabs
+// For material
 import { MatTabsModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // For bootstrap tabs
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShoppingCartItemComponent } from './components/shopping-cart-item/shopping-cart-item.component';
 import { SizeSelectComponent } from './shared/size-select.component';
+
+import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 
 
 
@@ -55,10 +59,12 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatTabsModule,
+    MatButtonModule,
     NgbModule.forRoot(),
     CoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EcoFabSpeedDialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

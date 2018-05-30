@@ -3,6 +3,8 @@ import { Shirt } from '../../shared/shirt';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { ShirtSize } from '../../shared/shirt-size';
+import { ShirtService } from '../../core/shirt.service';
 
 @Component({
   selector: 'app-shirt',
@@ -13,8 +15,16 @@ export class ShirtComponent implements OnInit, OnDestroy {
 
   @Input() shirt: Shirt;
   subs: Subscription[] = [];
+  shirtSize = ShirtSize;
 
-  constructor(private shoppingCartService: ShoppingCartService, private router: Router) { }
+  open: boolean = false;
+  direction: string = 'up';
+  animationMode: string = 'fling';
+  actionButtonsShown: boolean = false;
+
+  constructor(private shoppingCartService: ShoppingCartService,
+    private shirtService: ShirtService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,8 +40,19 @@ export class ShirtComponent implements OnInit, OnDestroy {
     return '../../../assets/images/image';
   }
 
-  addToBasket(shirt: Shirt): any {
-    this.shoppingCartService.addToShoppingCart(shirt);
+  addToBasket(shirt: Shirt, size: ShirtSize): any {
+    this.shoppingCartService.addToShoppingCart(shirt, size);
   }
 
+  edit() {
+
+  }
+
+  duplicate(shirt: Shirt) {
+
+  }
+
+  delete(shirt: Shirt): void {
+    this.shirtService.deleteShirt(shirt);
+  }
 }

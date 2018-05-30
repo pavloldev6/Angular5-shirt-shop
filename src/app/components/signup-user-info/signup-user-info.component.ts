@@ -3,11 +3,11 @@ import { COUNTRIES, REGIONS } from '../../constants/countries-regions.constants'
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-shipping',
-  templateUrl: './shipping.component.html',
-  styleUrls: ['./shipping.component.css']
+  selector: 'app-signup-user-info',
+  templateUrl: './signup-user-info.component.html',
+  styleUrls: ['./signup-user-info.component.css']
 })
-export class ShippingComponent implements OnInit {
+export class SignupUserInfoComponent implements OnInit {
   private states = REGIONS;
   private countries = COUNTRIES;
 

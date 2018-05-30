@@ -23,21 +23,21 @@
       <ngb-tab title="All Designs">
         <ng-template ngbTabContent>
           <div class="row">
-            <app-shirt *ngFor="let shirt of shirts | async" [shirt]="shirt"></app-shirt>
+            <app-shirt *ngFor="let shirt of shirts" [shirt]="shirt"></app-shirt>
           </div>
         </ng-template>
       </ngb-tab>
       <ngb-tab title="Men">
         <ng-template ngbTabContent>
           <div class="row">
-            <app-shirt *ngFor="let shirt of shirts | async | filterByGender:'M'" [shirt]="shirt"></app-shirt>
+            <app-shirt *ngFor="let shirt of shirts | filterByGender:'M'" [shirt]="shirt"></app-shirt>
           </div>
         </ng-template>
       </ngb-tab>
       <ngb-tab title="Women" [disabled]="false">
         <ng-template ngbTabContent>
           <div class="row">
-            <app-shirt *ngFor="let shirt of shirts | async | filterByGender:'F'" [shirt]="shirt"></app-shirt>
+            <app-shirt *ngFor="let shirt of shirts | filterByGender:'F'" [shirt]="shirt"></app-shirt>
           </div>
         </ng-template>
       </ngb-tab>
