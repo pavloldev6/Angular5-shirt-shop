@@ -41,6 +41,14 @@ nav {
     z-index: 1041;
 }
 
+.shipping-info-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1041;
+}
+
 .overlay {
     position: fixed;
     z-index: 1040;
@@ -48,7 +56,21 @@ nav {
     top: 0;
     bottom: 0;
     right: 0;
-    background: rgba(112, 112, 105, 0.637)
+    background: rgba(68, 68, 68, 0.7)
+}
+
+.shopping-cart-overlay {
+    position: absolute;
+    z-index: 1042;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(205, 205, 205, 0.5)
+}
+
+.shipping-info-overlay {
+    
 }
 
 .fixed-position {

@@ -16,6 +16,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   subtotal: number;
   @Output() showShoppingCartChange = new EventEmitter<boolean>();
+  @Output() triggerShippingInfo = new EventEmitter();
 
   shoppingCartForm: FormGroup;
 
@@ -51,6 +52,10 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   closeShoppingCart(): any {
     this.showShoppingCartChange.emit(false);
+  }
+
+  goToShipping(): void {
+    this.triggerShippingInfo.emit();
   }
 
   formInitialized(name: string, form: FormGroup) {

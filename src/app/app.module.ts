@@ -28,6 +28,7 @@ import { SizeSelectComponent } from './shared/size-select.component';
 
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { ClickOutsideModule } from 'ng-click-outside';
+import { ShippingInfoComponent } from './components/shipping-info/shipping-info.component';
 
 
 
@@ -53,7 +54,8 @@ const routes: Routes = [
     ShirtGenderPipe,
     ShoppingCartComponent,
     ShoppingCartItemComponent,
-    SizeSelectComponent
+    SizeSelectComponent,
+    ShippingInfoComponent
   ],
   imports: [
     BrowserModule,

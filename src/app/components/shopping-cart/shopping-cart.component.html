@@ -25,7 +25,7 @@
       <strong><span class="subtotal">Subtotal: </span><span class="subtotal-price">{{subtotal | currency}}</span></strong>
     </div><br>
     <div class="float-right" *ngIf="shoppingCartItems?.length > 0">
-      <button type="button" [disabled]="!shoppingCartForm.valid" class="primary-btn">GO TO SHIPPING</button>
+      <button type="button" [disabled]="!shoppingCartForm.valid" class="primary-btn" (click)="goToShipping()">GO TO SHIPPING</button>
     </div>
   </form>
 </div>

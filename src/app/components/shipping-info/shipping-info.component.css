@@ -1,0 +1,20 @@
+.shipping-info-container {
+    width: 385px;
+    background-color: #F0F0F0;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 100%;
+    overflow: auto;
+}
+
+.shipping-info-title {
+    color: #274686;
+    font-size: 26px;
+    font-weight: 800;
+    margin-right: 84px;
+    margin-left: 15px;
+}
+
+.shipping-info-header {
+    margin-top: 22px;
+}

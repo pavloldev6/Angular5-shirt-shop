@@ -53,7 +53,12 @@
     </ngb-tabset>
   </div>
 </div>
-<div class="overlay" [hidden]="!showShoppingCart" (click)="toggleShoppingCart()"></div>
-<div class="shopping-cart-panel" [hidden]="!showShoppingCart">
-  <app-shopping-cart (showShoppingCartChange)="toggleShoppingCart()"></app-shopping-cart>
+<div class="overlay" [hidden]="!showShoppingCart && !showShippingInfo" (click)="closeAllPanels()"></div>
+<div #shoppingCartPanel class="shopping-cart-panel" [hidden]="!showShoppingCart">
+  <app-shopping-cart (showShoppingCartChange)="toggleShoppingCart()"
+    (triggerShippingInfo)="openShipping()"></app-shopping-cart>
+    <div class="shopping-cart-overlay" [hidden]="showShoppingCart && !showShippingInfo" (click)="closeAllButShoppingCart()"></div>
+</div>
+<div #shippingInfoPanel class="shipping-info-panel" [hidden]="!showShippingInfo">
+  <app-shipping-info></app-shipping-info>
 </div>
