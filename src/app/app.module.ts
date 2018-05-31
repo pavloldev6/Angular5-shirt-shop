@@ -29,6 +29,7 @@ import { SizeSelectComponent } from './shared/size-select.component';
 import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ShippingInfoComponent } from './components/shipping-info/shipping-info.component';
+import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
 
 
 
@@ -55,7 +56,8 @@ const routes: Routes = [
     ShoppingCartComponent,
     ShoppingCartItemComponent,
     SizeSelectComponent,
-    ShippingInfoComponent
+    ShippingInfoComponent,
+    PaymentMethodComponent
   ],
   imports: [
     BrowserModule,

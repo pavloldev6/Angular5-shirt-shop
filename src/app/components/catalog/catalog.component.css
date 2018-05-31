@@ -33,15 +33,7 @@ nav {
     width: 242px;
 }
 
-.shopping-cart-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1041;
-}
-
-.shipping-info-panel {
+.shopping-cart-panel, .shipping-info-panel, .payment-method-panel{
     position: fixed;
     top: 0;
     right: 0;
@@ -59,7 +51,7 @@ nav {
     background: rgba(68, 68, 68, 0.7)
 }
 
-.shopping-cart-overlay {
+.shopping-cart-overlay, .shipping-info-overlay {
     position: absolute;
     z-index: 1042;
     left: 0;
@@ -67,10 +59,6 @@ nav {
     bottom: 0;
     right: 0;
     background: rgba(205, 205, 205, 0.5)
-}
-
-.shipping-info-overlay {
-    
 }
 
 .fixed-position {

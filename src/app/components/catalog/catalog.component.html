@@ -60,5 +60,9 @@
     <div class="shopping-cart-overlay" [hidden]="showShoppingCart && !showShippingInfo" (click)="closeAllButShoppingCart()"></div>
 </div>
 <div #shippingInfoPanel class="shipping-info-panel" [hidden]="!showShippingInfo">
-  <app-shipping-info></app-shipping-info>
+  <app-shipping-info (triggerPaymentMethod)="openPayment()"></app-shipping-info>
+  <div class="shipping-info-overlay" [hidden]="showShoppingCart && showShippingInfo && !showPaymentMethod" (click)="closePaymentMethodPanel()"></div>
+</div>
+<div #paymentMethodPanel class="payment-method-panel" [hidden]="!showPaymentMethod">
+  <app-payment-method></app-payment-method>
 </div>

@@ -1,9 +1,8 @@
-import { Component, OnInit, Output, OnDestroy, Renderer2, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, OnDestroy, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { ShirtGenderPipe } from '../../filters/shirt-filter';
 import { Shirt } from '../../shared/shirt';
 import { ShirtService } from '../../core/shirt.service';
-import { Observable } from 'rxjs/Observable';
-import { Subscriber, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
@@ -12,17 +11,20 @@ import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component'
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
-export class CatalogComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CatalogComponent implements OnInit, OnDestroy {
 
   private shirts: Shirt[];
-  private shippingPanelWidth: number;
+  private shippingInfoPanelWidth: number;
+  private paymentMethodPanelWidth: number;
   subscriptions: Subscription[];
   shoppingCartItemsCount: number;
   showShoppingCart = false;
   showShippingInfo = false;
+  showPaymentMethod = false;
 
   @ViewChild('shoppingCartPanel') shoppingCartPanel: ElementRef;
   @ViewChild('shippingInfoPanel') shippingInfoPanel: ElementRef;
+  @ViewChild('paymentMethodPanel') paymentMethodPanel: ElementRef;
 
   logoPath = '../../../assets/images/navlogo.png';
 
@@ -47,7 +49,8 @@ export class CatalogComponent implements OnInit, OnDestroy, AfterViewInit {
       this.shoppingCartItemsCount = items.length;
     }));
 
-    this.shippingPanelWidth = this.shippingInfoPanel.nativeElement.offsetWidth;
+    this.shippingInfoPanelWidth = this.shippingInfoPanel.nativeElement.offsetWidth;
+    this.paymentMethodPanelWidth = this.paymentMethodPanel.nativeElement.offsetWidth;
   }
 
   ngOnDestroy(): any {
@@ -57,10 +60,6 @@ export class CatalogComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     }
     this.subscriptions = [];
-  }
-
-  ngAfterViewInit(): any {
-    let width = this.shippingInfoPanel.nativeElement.offsetWidth;
   }
 
   toggleShoppingCart(): void {
@@ -75,24 +74,52 @@ export class CatalogComponent implements OnInit, OnDestroy, AfterViewInit {
     this.showShippingInfo = true;
     this.renderer.setStyle(this.shoppingCartPanel.nativeElement,
       'right',
-      this.shippingPanelWidth + 'px');
+      this.shippingInfoPanelWidth + 'px');
+  }
+
+  openPayment(): void {
+    this.showPaymentMethod = true;
+    this.renderer.setStyle(this.shoppingCartPanel.nativeElement,
+      'right',
+      this.shippingInfoPanelWidth + this.paymentMethodPanelWidth + 'px');
+    this.renderer.setStyle(this.shippingInfoPanel.nativeElement,
+      'right',
+      this.paymentMethodPanelWidth + 'px');
+    this.renderer.setStyle(this.shippingInfoPanel.nativeElement,
+      'border-left',
+      '1px solid #CDCDCD');
   }
 
   closeAllPanels(): void {
     this.showShippingInfo = false;
     this.showShoppingCart = false;
+    this.showPaymentMethod = false;
     this.setShoppingPanelOriginal();
+    this.setShippingPanelOriginal();
   }
 
   closeAllButShoppingCart(): void {
     this.showShippingInfo = false;
+    this.showPaymentMethod = false;
     this.showShoppingCart = true;
     this.setShoppingPanelOriginal();
+    this.setShippingPanelOriginal();
+  }
+
+  closePaymentMethodPanel(): void {
+    this.showPaymentMethod = false;
+    this.renderer.setStyle(this.shoppingCartPanel.nativeElement,
+      'right',
+      this.shippingInfoPanelWidth + 'px');
+    this.setShippingPanelOriginal();
   }
 
   private setShoppingPanelOriginal(): void {
-    this.renderer.setStyle(this.shoppingCartPanel.nativeElement,
-      'right',
-      '0');
+    this.renderer.removeStyle(this.shoppingCartPanel.nativeElement, 'right');
+  }
+
+  private setShippingPanelOriginal(): void {
+    this.renderer.removeStyle(this.shippingInfoPanel.nativeElement, 'right');
+    this.renderer.removeStyle(this.shippingInfoPanel.nativeElement, 'border-left');
   }
 }
