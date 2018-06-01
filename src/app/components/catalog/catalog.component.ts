@@ -22,6 +22,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   showShoppingCart = false;
   showShippingInfo = false;
   showPaymentMethod = false;
+  showPaymentComplete = false;
   showDesignShirt = false;
 
   @ViewChild('shoppingCartPanel') shoppingCartPanel: ElementRef;
@@ -148,6 +149,15 @@ export class CatalogComponent implements OnInit, OnDestroy {
       'right',
       this.shippingInfoPanelWidth + 'px');
     this.setShippingPanelOriginal();
+  }
+
+  checkedOut(): void {
+    this.closeAllPanels();
+    this.showPaymentComplete = true;
+  }
+
+  closePaymentComplete(): void {
+    this.showPaymentComplete = false;
   }
 
   private setShoppingPanelOriginal(): void {

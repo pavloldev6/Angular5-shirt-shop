@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
 import { SlidingPanelsService } from '../../core/sliding-panels.service';
@@ -14,6 +14,7 @@ const TAX_PERCENTAGE = 0.13;
 })
 export class PaymentMethodComponent implements OnInit {
 
+  @Output() checkedOut;
   sub: Subscription;
   paymentMethodForm: FormGroup;
   subtotal: number;
@@ -23,7 +24,9 @@ export class PaymentMethodComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private shoppingCartService: ShoppingCartService,
-              private slidingPanelsService: SlidingPanelsService) { }
+              private slidingPanelsService: SlidingPanelsService) {
+                this.checkedOut = new EventEmitter();
+  }
 
   ngOnInit() {
     this.paymentMethodForm = this.fb.group({
@@ -37,6 +40,10 @@ export class PaymentMethodComponent implements OnInit {
         this.calculatePrices();
       }
     });
+  }
+
+  checkout(): void {
+    this.checkedOut.emit();
   }
 
   private calculatePrices(): void {

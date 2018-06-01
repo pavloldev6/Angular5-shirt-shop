@@ -58,7 +58,7 @@
     </div>
   </div>
 </div>
-<div class="overlay" [hidden]="!showShoppingCart && !showShippingInfo" (click)="closeAllPanels()"></div>
+<div class="overlay" [hidden]="!showShoppingCart && !showShippingInfo && !showPaymentComplete" (click)="closeAllPanels()"></div>
 <div #shoppingCartPanel class="shopping-cart-panel" [hidden]="!showShoppingCart">
   <app-shopping-cart></app-shopping-cart>
     <div class="shopping-cart-overlay" [hidden]="showShoppingCart && !showShippingInfo" (click)="closeAllButShoppingCart()"></div>
@@ -68,6 +68,9 @@
   <div class="shipping-info-overlay" [hidden]="showShoppingCart && showShippingInfo && !showPaymentMethod" (click)="closePaymentMethodPanel()"></div>
 </div>
 <div #paymentMethodPanel class="payment-method-panel" [hidden]="!showPaymentMethod">
-  <app-payment-method></app-payment-method>
+  <app-payment-method (checkedOut)="checkedOut()"></app-payment-method>
+</div>
+<div class="payment-complete-panel" [hidden]="!showPaymentComplete">
+  <app-payment-complete (close)="closePaymentComplete()"></app-payment-complete>
 </div>
 

@@ -33,7 +33,10 @@ nav {
     width: 242px;
 }
 
-.shopping-cart-panel, .shipping-info-panel, .payment-method-panel{
+.shopping-cart-panel,
+.shipping-info-panel, 
+.payment-method-panel, 
+.payment-complete-panel {
     position: fixed;
     top: 0;
     right: 0;

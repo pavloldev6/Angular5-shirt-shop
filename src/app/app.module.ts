@@ -31,6 +31,7 @@ import { ShippingInfoComponent } from './components/shipping-info/shipping-info.
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
 import { SignupUserInfoComponent } from './components/signup-user-info/signup-user-info.component';
 import { DesignShirtComponent } from './components/design-shirt/design-shirt.component';
+import { PaymentCompleteComponent } from './components/payment-complete/payment-complete.component';
 
 
 
@@ -59,7 +60,8 @@ const routes: Routes = [
     SizeSelectComponent,
     ShippingInfoComponent,
     PaymentMethodComponent,
-    DesignShirtComponent
+    DesignShirtComponent,
+    PaymentCompleteComponent
   ],
   imports: [
     BrowserModule,
