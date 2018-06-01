@@ -9,7 +9,6 @@ import { HomeComponent } from './components/home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
-import { ShippingComponent } from './components/shipping/shipping.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { ShirtComponent } from './components/shirt/shirt.component';
 
@@ -30,6 +29,8 @@ import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ShippingInfoComponent } from './components/shipping-info/shipping-info.component';
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
+import { SignupUserInfoComponent } from './components/signup-user-info/signup-user-info.component';
+import { DesignShirtComponent } from './components/design-shirt/design-shirt.component';
 
 
 
@@ -48,8 +49,8 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     SignupComponent,
+    SignupUserInfoComponent,
     LoginComponent,
-    ShippingComponent,
     CatalogComponent,
     ShirtComponent,
     ShirtGenderPipe,
@@ -57,7 +58,8 @@ const routes: Routes = [
     ShoppingCartItemComponent,
     SizeSelectComponent,
     ShippingInfoComponent,
-    PaymentMethodComponent
+    PaymentMethodComponent,
+    DesignShirtComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,11 @@
-import { Component, OnInit, Output, OnDestroy, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, OnDestroy, Renderer2, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { ShirtGenderPipe } from '../../filters/shirt-filter';
 import { Shirt } from '../../shared/shirt';
 import { ShirtService } from '../../core/shirt.service';
 import { Subscription } from 'rxjs';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
+import { SlidingPanelsService } from '../../core/sliding-panels.service';
 
 @Component({
   selector: 'app-catalog',
@@ -21,6 +22,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   showShoppingCart = false;
   showShippingInfo = false;
   showPaymentMethod = false;
+  showDesignShirt = false;
 
   @ViewChild('shoppingCartPanel') shoppingCartPanel: ElementRef;
   @ViewChild('shippingInfoPanel') shippingInfoPanel: ElementRef;
@@ -30,6 +32,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   constructor(private shirtService: ShirtService, 
     private shoppingCartService: ShoppingCartService,
+    private slidingPanelsService: SlidingPanelsService,
     private renderer: Renderer2) {
 
       this.subscriptions = [];
@@ -49,6 +52,30 @@ export class CatalogComponent implements OnInit, OnDestroy {
       this.shoppingCartItemsCount = items.length;
     }));
 
+    this.subscriptions.push(
+      this.slidingPanelsService.shippingInfo$.subscribe((state) => {
+        if (state) {
+          this.openShipping();
+        }
+      })
+    );
+
+    this.subscriptions.push(
+      this.slidingPanelsService.shoppingCart$.subscribe((state) => {
+        if (!state) {
+          this.toggleShoppingCart(state);
+        }
+      })
+    );
+
+    this.subscriptions.push(
+      this.slidingPanelsService.paymentMethod$.subscribe((state) => {
+        if (state) {
+          this.openPayment();
+        }
+      })
+    );
+
     this.shippingInfoPanelWidth = this.shippingInfoPanel.nativeElement.offsetWidth;
     this.paymentMethodPanelWidth = this.paymentMethodPanel.nativeElement.offsetWidth;
   }
@@ -62,11 +89,20 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.subscriptions = [];
   }
 
-  toggleShoppingCart(): void {
-    if (!this.showShoppingCart) {
-      this.showShoppingCart = true;
-    } else {
-      this.showShoppingCart = false;
+  openNewDesign(): void {
+    this.showDesignShirt = true;
+  }
+
+  toggleShoppingCart(state?: boolean): void {
+    if (state !== undefined) {
+      this.showShoppingCart = state;
+    }
+    else {
+      if (!this.showShoppingCart) {
+        this.showShoppingCart = true;
+      } else {
+        this.showShoppingCart = false;
+      }
     }
   }
 

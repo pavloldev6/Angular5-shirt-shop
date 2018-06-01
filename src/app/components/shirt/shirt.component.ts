@@ -49,7 +49,7 @@ export class ShirtComponent implements OnInit, OnDestroy {
   }
 
   duplicate(shirt: Shirt) {
-
+    this.shirtService.duplicateShirt(shirt);
   }
 
   delete(shirt: Shirt): void {

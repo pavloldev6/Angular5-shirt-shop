@@ -122,3 +122,21 @@ nav {
     width: 100%;
     padding: 30px;
 }
+
+input::-webkit-input-placeholder {
+    color: #CDCDCD;
+    font-family: 'Montserrat', 'Regular';
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.design-name-input {
+    border: 1px solid #CDCDCD;
+    border-radius: 4px;
+    height: 48px !important;
+    color: #10A2DC;
+    padding: 15px;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: bold;
+}

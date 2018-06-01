@@ -42,6 +42,16 @@ export class ShirtService {
 
     // }
 
+    duplicateShirt(shirt: Shirt): void {
+
+        let idx: number = this.shirts.findIndex(s => s.id === shirt.id);
+        if (idx !== -1) {
+            const duplicatedShirt = Object.assign(new Shirt(), shirt, { id: ++this.lastUsedId });
+            this.shirts.push(duplicatedShirt);
+            this.shirtsSubject.next(this.shirts);
+        }
+    }
+
     deleteShirt(shirt: Shirt): void {
         
         let idx: number = this.shirts.findIndex(existingShirt => existingShirt.id === shirt.id);

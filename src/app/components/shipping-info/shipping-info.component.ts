@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { COUNTRIES, REGIONS } from '../../constants/countries-regions.constants';
+import { SlidingPanelsService } from '../../core/sliding-panels.service';
 
 @Component({
   selector: 'app-shipping-info',
@@ -8,21 +10,45 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ShippingInfoComponent implements OnInit {
 
-  @Output() triggerPaymentMethod;
+  private states = REGIONS;
+  private countries = COUNTRIES;
+
+  //@Output() triggerPaymentMethod;
   shippingInfoForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.triggerPaymentMethod = new EventEmitter();
+  selectedCountry = 'Select Option';
+  selectedState = 'Select';
+
+  constructor(private fb: FormBuilder, private slidingPanelsService: SlidingPanelsService) {
+    //this.triggerPaymentMethod = new EventEmitter();
   } 
 
   ngOnInit() {
     this.shippingInfoForm = this.fb.group({
-      
+      name: [],
+      email: [],
+      phone: [],
+      address1: [],
+      address2: [],
+      city: [],
+      country: [],
+      province: [],
+      postal: []
     });
   }
 
+  selectCountry(country) {
+    this.selectedCountry = country;
+    this.selectedState = 'Select';
+  }
+
+  selectState(state) {
+    this.selectedState = state;
+  }
+
   goToPayment(): void {
-    this.triggerPaymentMethod.emit();
+    this.slidingPanelsService.togglePaymentMethod(true);
+    //this.triggerPaymentMethod.emit();
   }
 
 }

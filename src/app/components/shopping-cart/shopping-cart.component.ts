@@ -4,6 +4,7 @@ import { ShoppingItem } from '../../shared/shopping-item';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
 import { Observable, Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { SlidingPanelsService } from '../../core/sliding-panels.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,18 +16,18 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   shoppingCartItems: ShoppingItem[];
   subscription: Subscription;
   subtotal: number;
-  @Output() showShoppingCartChange = new EventEmitter<boolean>();
-  @Output() triggerShippingInfo = new EventEmitter();
 
   shoppingCartForm: FormGroup;
 
-  constructor(private shoppingCartService: ShoppingCartService, private fb: FormBuilder) { }
+  constructor(private shoppingCartService: ShoppingCartService,
+              private slidingPanelsService: SlidingPanelsService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
     this.subtotal = 0;
     this.subscription = this.shoppingCartService.getShoppingCartItems().subscribe((items) => {
       this.shoppingCartItems = items;
-      this.subtotal = this.calculateSubtotal();
+      this.subtotal = this.shoppingCartService.calculateSubtotal();
     });
     this.shoppingCartForm = this.fb.group({
       shoppingItems: this.fb.array([
@@ -42,20 +43,16 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     }
   }
 
-  calculateSubtotal(): number {
-    return this.shoppingCartItems.reduce((total, item) => total + item.shirt.price * item.quantity, 0);
-  }
-
   changeQuantity(item: ShoppingItem): any {
-    this.subtotal = this.calculateSubtotal();
+    this.subtotal = this.shoppingCartService.calculateSubtotal();
   }
 
   closeShoppingCart(): any {
-    this.showShoppingCartChange.emit(false);
+    this.slidingPanelsService.toggleShoppingCart(false);
   }
 
   goToShipping(): void {
-    this.triggerShippingInfo.emit();
+    this.slidingPanelsService.toggleShippingInfo(true);
   }
 
   formInitialized(name: string, form: FormGroup) {

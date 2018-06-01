@@ -18,3 +18,19 @@
 .shipping-info-header {
     margin-top: 22px;
 }
+
+label {
+    color:#888888;
+}
+
+.form-control {
+    border: 1px solid #CDCDCD;
+    border-radius: 4px;
+    height: 48px !important;
+    color: #10A2DC;
+    padding: 15px;
+}
+
+.go-to-payment {
+    margin-top: 10px;
+}

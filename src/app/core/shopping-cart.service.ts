@@ -3,7 +3,7 @@ import { ShoppingItem } from '../shared/shopping-item';
 import { ShirtService } from '../core/shirt.service';
 import { Shirt } from '../shared/shirt';
 import { ShirtSize } from '../shared/shirt-size';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class ShoppingCartService {
@@ -72,5 +72,9 @@ export class ShoppingCartService {
             this.shoppingItems.splice(idx, 1);
             this.setShoppingCartItems();
         }
+    }
+
+    calculateSubtotal(): number {
+        return this.shoppingItems.reduce((total, item) => total + item.shirt.price * item.quantity, 0);
     }
 }

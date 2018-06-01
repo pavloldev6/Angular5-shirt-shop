@@ -79,6 +79,13 @@ input {
     font-weight: bold;
 }
 
+
+input::-webkit-input-placeholder {
+    color: #CDCDCD !important;
+    font-family: 'Montserrat';
+    font-weight: normal;
+}
+
 select {
     color: #10A2DC;
 }
