@@ -21,8 +21,8 @@
     </div> 
   </nav>
   <div class="container">
-    <ngb-tabset class="catalog-tabs" [hidden]="showDesignShirt">
-      <ngb-tab title="All Designs">
+    <ngb-tabset #catalogTabs class="catalog-tabs" [hidden]="showDesignShirt" (tabChange)="onTabChanged($event)">
+      <ngb-tab title="All Designs" id="tab-all-designs">
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts" [shirt]="shirt"></app-shirt>
@@ -32,25 +32,28 @@
           </div>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Men">
+      <ngb-tab title="Men" id="tab-men-designs">
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts | filterByGender:'M'" [shirt]="shirt"></app-shirt>
-            <div *ngIf="(shirts?.length) === 0" class="no-designs-message">
+            <div *ngIf="(shirts | filterByGender:'M')?.length === 0" class="no-designs-message">
               No designs added
             </div>
           </div>
         </ng-template>
       </ngb-tab>
-      <ngb-tab title="Women" [disabled]="false">
+      <ngb-tab title="Women" [disabled]="false" id="tab-women-designs">
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts | filterByGender:'F'" [shirt]="shirt"></app-shirt>
-            <div *ngIf="(shirts?.length) === 0" class="no-designs-message">
+            <div *ngIf="(shirts | filterByGender:'F')?.length === 0" class="no-designs-message">
               No designs added
             </div>
           </div>
         </ng-template>
+      </ngb-tab>
+      <ngb-tab [disabled]="true">
+          <ng-template ngbTabTitle>Showing {{designsCount}} Designs</ng-template>
       </ngb-tab>
     </ngb-tabset>
     <div [hidden]="!showDesignShirt">

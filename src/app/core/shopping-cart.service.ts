@@ -74,6 +74,11 @@ export class ShoppingCartService {
         }
     }
 
+    clearShoppingCart(): void {
+        this.shoppingItems = [];
+        this.setShoppingCartItems();
+    }
+
     calculateSubtotal(): number {
         return this.shoppingItems.reduce((total, item) => total + item.shirt.price * item.quantity, 0);
     }

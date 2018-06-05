@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { SlidingPanelsService } from '../../core/sliding-panels.service';
+import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-catalog',
@@ -24,10 +25,12 @@ export class CatalogComponent implements OnInit, OnDestroy {
   showPaymentMethod = false;
   showPaymentComplete = false;
   showDesignShirt = false;
+  designsCount: number;
 
   @ViewChild('shoppingCartPanel') shoppingCartPanel: ElementRef;
   @ViewChild('shippingInfoPanel') shippingInfoPanel: ElementRef;
   @ViewChild('paymentMethodPanel') paymentMethodPanel: ElementRef;
+  @ViewChild('catalogTabs') catalogTabset: NgbTabset;
 
   logoPath = '../../../assets/images/navlogo.png';
 
@@ -47,6 +50,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
     // }, []);
     this.subscriptions.push(this.shirtService.getShirts().subscribe((result) => {
       this.shirts = result;
+      this.updateDesignCount(this.catalogTabset.activeId);
     }));
 
     this.subscriptions.push(this.shoppingCartService.getShoppingCartItems().subscribe((items) => {
@@ -88,6 +92,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
       });
     }
     this.subscriptions = [];
+  }
+
+  onTabChanged(e): void {
+    this.updateDesignCount(e.nextId);
   }
 
   openNewDesign(): void {
@@ -159,6 +167,22 @@ export class CatalogComponent implements OnInit, OnDestroy {
   closePaymentComplete(): void {
     this.showPaymentComplete = false;
   }
+
+  private updateDesignCount(tabId: string): void {
+    const shirtGenderPipe: ShirtGenderPipe = new ShirtGenderPipe();
+    switch (tabId) {
+      case "tab-men-designs":
+        this.designsCount = shirtGenderPipe.transform(this.shirts, 'M').length;
+        break;
+      case "tab-women-designs":
+        this.designsCount = shirtGenderPipe.transform(this.shirts, 'F').length;
+        break;
+      case "tab-all-designs":
+      default:
+        this.designsCount = this.shirts.length;
+    }
+  }
+
 
   private setShoppingPanelOriginal(): void {
     this.renderer.removeStyle(this.shoppingCartPanel.nativeElement, 'right');

@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ShoppingCartService } from '../../core/shopping-cart.service';
 
 const SHIRT_ICON = '../../../assets/images/ShirtIcon.svg';
 
@@ -12,7 +13,7 @@ export class PaymentCompleteComponent implements OnInit {
   @Output() close;
   shirtIconPath = SHIRT_ICON;
 
-  constructor() {
+  constructor(private shoppingCartService: ShoppingCartService) {
     this.close = new EventEmitter();  
   }
 
@@ -20,6 +21,7 @@ export class PaymentCompleteComponent implements OnInit {
   }
 
   goToCatalog(): void {
+    this.shoppingCartService.clearShoppingCart();
     this.close.emit();
   }
 

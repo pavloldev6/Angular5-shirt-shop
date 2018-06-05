@@ -33,6 +33,17 @@ nav {
     width: 242px;
 }
 
+:host ::ng-deep .catalog-tabs li.nav-item:last-child {
+    margin-left: auto;
+}
+
+:host ::ng-deep .catalog-tabs li.nav-item:last-child a.nav-link {
+    font-size: 16px;
+    font-weight: bold;
+    color: #444444 !important;
+    cursor: default;
+}
+
 .shopping-cart-panel,
 .shipping-info-panel, 
 .payment-method-panel, 
