@@ -20,13 +20,13 @@
           </div>
     </div> 
   </nav>
-  <div class="container">
-    <ngb-tabset #catalogTabs class="catalog-tabs" [hidden]="showDesignShirt" (tabChange)="onTabChanged($event)">
+  <div class="container" [hidden]="showDesignShirt">
+    <ngb-tabset #catalogTabs class="catalog-tabs" (tabChange)="onTabChanged($event)">
       <ngb-tab title="All Designs" id="tab-all-designs">
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts" [shirt]="shirt"></app-shirt>
-            <div *ngIf="(shirts?.length) === 0" class="no-designs-message">
+            <div *ngIf="designsCount === 0" class="no-designs-message">
               No designs added
             </div>
           </div>
@@ -36,7 +36,7 @@
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts | filterByGender:'M'" [shirt]="shirt"></app-shirt>
-            <div *ngIf="(shirts | filterByGender:'M')?.length === 0" class="no-designs-message">
+            <div *ngIf="designsCount === 0" class="no-designs-message">
               No designs added
             </div>
           </div>
@@ -46,7 +46,7 @@
         <ng-template ngbTabContent>
           <div class="row">
             <app-shirt *ngFor="let shirt of shirts | filterByGender:'F'" [shirt]="shirt"></app-shirt>
-            <div *ngIf="(shirts | filterByGender:'F')?.length === 0" class="no-designs-message">
+            <div *ngIf="designsCount === 0" class="no-designs-message">
               No designs added
             </div>
           </div>
@@ -56,10 +56,11 @@
           <ng-template ngbTabTitle>Showing {{designsCount}} Designs</ng-template>
       </ngb-tab>
     </ngb-tabset>
+    
+  </div>
     <div [hidden]="!showDesignShirt">
       <app-design-shirt></app-design-shirt>
     </div>
-  </div>
 </div>
 <div class="overlay" [hidden]="!showShoppingCart && !showShippingInfo && !showPaymentComplete" (click)="closeAllPanels()"></div>
 <div #shoppingCartPanel class="shopping-cart-panel" [hidden]="!showShoppingCart">

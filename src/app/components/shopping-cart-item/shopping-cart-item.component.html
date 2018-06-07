@@ -9,7 +9,9 @@
       <div [formGroup]="shoppingItemForm" novalidate>
         <div class="row data-rows">
           <h4 class="card-title">{{item.shirt.name}}</h4>
-          <button type="button" class="btn-circle" (click)="removeCartItem(item)">&times;</button>
+          <button type="button" class="btn-circle" (click)="removeCartItem(item)">
+            <img src="{{timesImagePath}}" alt="times">
+          </button>
         </div>
         <div class="row data-rows">
           <div class="col-12">

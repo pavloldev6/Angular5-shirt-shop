@@ -46,7 +46,7 @@
           <label for="country">Country</label>
           <br>
           <select class="form-control" id="country" formControlName="country" (change)="selectCountry($event.currentTarget.value)">
-            <option value="" selected>Select Option</option>
+            <option value="Select Option">Select Option</option>
             <option *ngFor="let country of countries" [value]="country" (click)="selectCountry(country)">{{country}}</option>
           </select>
         </div>
@@ -56,7 +56,7 @@
           <label for="province">Province/State</label>
           <br>
           <select class="form-control" id="province" formControlName="province" (change)="selectState($event.currentTarget.value)">
-            <option value="">Select</option>
+            <option value="Select">Select</option>
             <option *ngFor="let state of states[selectedCountry]" [value]="state" (click)="selectState(state)">{{state}}</option>
           </select>
         </div>

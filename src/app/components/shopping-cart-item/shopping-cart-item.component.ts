@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
+const TIMES_PATH = "../../../assets/images/icon-times.svg";
+
 @Component({
   selector: 'app-shopping-cart-item',
   templateUrl: './shopping-cart-item.component.html',
@@ -17,6 +19,8 @@ export class ShoppingCartItemComponent implements OnInit {
   @Output() quantityChange = new EventEmitter();
   @Output() formReady = new EventEmitter<FormGroup>();
   shoppingItemForm: FormGroup;
+
+  timesImagePath: string = TIMES_PATH;
 
   constructor(private shoppingCartService: ShoppingCartService, private fb: FormBuilder) { }
 
