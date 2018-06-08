@@ -2,11 +2,15 @@ import { Injectable } from '@angular/core';
 import { Shirt } from '../shared/shirt';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 
+const SHIRT_IMAGES_PATH = "../../../assets/images/plain-shirts/";
+
 @Injectable()
 export class ShirtService {
 
     private shirts: Shirt[];
+    private editableShirt: Shirt;
     private shirtsSubject: BehaviorSubject<Shirt[]>;
+    private editableShirtSubject: BehaviorSubject<Shirt>;
 
     private lastUsedId: number = 8;
 
@@ -23,14 +27,38 @@ export class ShirtService {
             new Shirt(8, 'Dabbing Skeleton', 'Mens Fine Jersey Short Sleeve', 19.99, '/assets/images/MensShirtDesigns-5.jpg', 'M'),
         ];
         this.setShirts();
+        this.editableShirt = new Shirt();
+        this.editableShirt.shirtStyle = "MensShirt";
+        this.editableShirtSubject = new BehaviorSubject(this.editableShirt);
     }
 
     private setShirts() {
         this.shirtsSubject.next(this.shirts);
     }
 
+    private emitEditableShirt(): void {
+        this.editableShirtSubject.next(this.editableShirt);
+    }
+
     getShirts(): Observable<Shirt[]> {
         return this.shirtsSubject.asObservable();
+    }
+
+    getEditableShirt(): Observable<Shirt> {
+        return this.editableShirtSubject.asObservable();
+    }
+
+    selectStyle(style: string): void {
+        this.editableShirt.shirtStyle = style;
+        this.emitEditableShirt();
+    }
+
+    getStyleImagePath(style?): string {
+        return `${SHIRT_IMAGES_PATH}${(style) ? style.imgName: this.editableShirt.shirtStyle}-${this.editableShirt.shirtColour.toLowerCase()}.png`;
+    }
+
+    isStyleSelected(style): boolean {
+        return style.imgName === this.editableShirt.shirtStyle;
     }
 
     // getShirt(id: number): Shirt {
