@@ -53,6 +53,11 @@ export class ShirtService {
         this.emitEditableShirt();
     }
 
+    selectColour(colour: string): void {
+        this.editableShirt.shirtColour = colour;
+        this.emitEditableShirt();
+    }
+
     getStyleImagePath(style?): string {
         return `${SHIRT_IMAGES_PATH}${(style) ? style.imgName: this.editableShirt.shirtStyle}-${this.editableShirt.shirtColour.toLowerCase()}.png`;
     }

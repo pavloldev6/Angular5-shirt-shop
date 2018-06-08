@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShirtService } from '../../core/shirt.service';
+import { Shirt } from '../../shared/shirt';
+import { Subscription } from 'rxjs';
 
 const FRACTAL_PATH = '../../../assets/images/Fractal.png';
 
@@ -13,12 +15,16 @@ export class DesignShirtComponent implements OnInit {
   bgPath: string = FRACTAL_PATH;
 
   activeTab: number;
-  
+  editableShirt: Shirt;
+  sub: Subscription;
 
   constructor(private shirtService: ShirtService) { }
 
   ngOnInit() {
-    this.activeTab = 1;
+    this.activeTab = 2;
+    this.sub = this.shirtService.getEditableShirt().subscribe((shirt) => {
+      this.editableShirt = shirt;
+    });
   }
 
   toggleTab(tabId: number): void {

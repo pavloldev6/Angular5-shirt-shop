@@ -33,6 +33,7 @@ import { SignupUserInfoComponent } from './components/signup-user-info/signup-us
 import { DesignShirtComponent } from './components/design-shirt/design-shirt.component';
 import { PaymentCompleteComponent } from './components/payment-complete/payment-complete.component';
 import { StylePickerComponent } from './components/style-picker/style-picker.component';
+import { ColourPickerComponent } from './components/colour-picker/colour-picker.component';
 
 
 
@@ -63,7 +64,8 @@ const routes: Routes = [
     PaymentMethodComponent,
     DesignShirtComponent,
     PaymentCompleteComponent,
-    StylePickerComponent
+    StylePickerComponent,
+    ColourPickerComponent
   ],
   imports: [
     BrowserModule,

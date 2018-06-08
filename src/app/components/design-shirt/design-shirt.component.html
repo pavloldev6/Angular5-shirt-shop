@@ -47,7 +47,7 @@
               <app-style-picker></app-style-picker>
             </div>
             <div class="tab-pane" id="2" [ngClass]="{'active': activeTab === 2}">
-              colours
+              <app-colour-picker [(selectedColour)]="editableShirt.shirtColour"></app-colour-picker>
             </div>   
             <div class="tab-pane" id="3" [ngClass]="{'active': activeTab === 3}">
               graphics

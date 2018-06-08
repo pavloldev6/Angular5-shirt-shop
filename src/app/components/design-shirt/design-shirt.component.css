@@ -59,6 +59,8 @@
     padding: 0;
     border: none;
     border-radius: 10px;
+    background-color: #444444;
+    overflow: auto;
 }
 
 .design-tabs-container {
@@ -66,7 +68,6 @@
 }
 
 .design-tabs {
-    background-color: #444444;
     justify-content: center;
 }
 
@@ -100,6 +101,11 @@
 
 .design-tabs li .nav-link.active .nav-link-text {
     color: #FFFFFF;
+}
+
+.tab-content {
+    height: 100%;
+    background-color: #FFFFFF;
 }
 
 .image-design {
