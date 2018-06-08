@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Shirt } from '../../shared/shirt';
 import { Subscription } from 'rxjs';
 import { ShirtService } from '../../core/shirt.service';
+import { STYLES } from '../../constants/static-data.constants';
 
 @Component({
   selector: 'app-style-picker',
@@ -10,10 +11,7 @@ import { ShirtService } from '../../core/shirt.service';
 })
 export class StylePickerComponent implements OnInit {
 
-  styles = [
-    { imgName: 'MensShirt', imgDescription: 'Mens Fine Jersey Short Sleeve' },
-    { imgName: 'WomensShirt', imgDescription: 'Womens Fine Jersey Short Sleeve' }
-  ];
+  styles = STYLES;
   editableShirt: Shirt;
   sub: Subscription;
 

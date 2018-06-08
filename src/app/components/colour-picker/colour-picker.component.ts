@@ -22,6 +22,7 @@ export class ColourPickerComponent implements OnInit {
     { name: 'Red', value: '#A7386B' }
   ];
 
+  @Input() title: string;
   @Input() selectedColour: string;
   @Output() selectedColourChange: EventEmitter<string>;
 

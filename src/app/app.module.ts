@@ -34,6 +34,7 @@ import { DesignShirtComponent } from './components/design-shirt/design-shirt.com
 import { PaymentCompleteComponent } from './components/payment-complete/payment-complete.component';
 import { StylePickerComponent } from './components/style-picker/style-picker.component';
 import { ColourPickerComponent } from './components/colour-picker/colour-picker.component';
+import { GraphicsPickerComponent } from './components/graphics-picker/graphics-picker.component';
 
 
 
@@ -65,7 +66,8 @@ const routes: Routes = [
     DesignShirtComponent,
     PaymentCompleteComponent,
     StylePickerComponent,
-    ColourPickerComponent
+    ColourPickerComponent,
+    GraphicsPickerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { COUNTRIES, REGIONS } from '../../constants/countries-regions.constants';
+import { COUNTRIES, REGIONS } from '../../constants/static-data.constants';
 import { SlidingPanelsService } from '../../core/sliding-panels.service';
 
 @Component({

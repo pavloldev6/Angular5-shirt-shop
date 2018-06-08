@@ -1,12 +1,12 @@
 
 .pick-style-container {
-    padding-top: 24px;
     background-color: #FFFFFF;
 }
 
 .pick-style-title {
     color: #10A2DC;
     font-size: 14px;
+    padding-top: 13px;
     padding-bottom: 13px;
     font-weight: bold;
 }

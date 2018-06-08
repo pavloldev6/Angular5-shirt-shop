@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { COUNTRIES, REGIONS } from '../../constants/countries-regions.constants';
+import { COUNTRIES, REGIONS } from '../../constants/static-data.constants';
 import { Router } from '@angular/router';
 
 @Component({

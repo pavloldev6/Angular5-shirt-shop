@@ -18,10 +18,12 @@ export class DesignShirtComponent implements OnInit {
   editableShirt: Shirt;
   sub: Subscription;
 
+  colourPickerTitle: string = 'Choose a shirt colour';
+
   constructor(private shirtService: ShirtService) { }
 
   ngOnInit() {
-    this.activeTab = 2;
+    this.activeTab = 3;
     this.sub = this.shirtService.getEditableShirt().subscribe((shirt) => {
       this.editableShirt = shirt;
     });
