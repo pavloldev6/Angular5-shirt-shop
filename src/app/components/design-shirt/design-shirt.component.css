@@ -117,8 +117,29 @@
 }
 
 .graphic-img {
-    position: absolute;
-    left: 27%;
     top: 15%;
     width: 45%;
+    padding: 35px;
+    border: 1px solid #DDDDDD;
+    height: 380px;
+    width: 380px;
+    display: flex;
+    align-self: center;
+}
+
+.shirt-text {
+    max-width: 376px;
+    display: flex;
+    justify-items: center;
+    align-self: center;
+    font-size: 68px;
+    text-align: center;
+    border: 1px solid #DDDDDD;
+    padding-top: 37px;
+    padding-left: 13px;
+    padding-bottom: 30px;
+}
+
+.shirt-text, .graphic-img {
+    position: absolute;
 }

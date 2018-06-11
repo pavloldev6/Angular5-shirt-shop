@@ -11,9 +11,26 @@ export class Shirt {
         public gender?: 'M' | 'F',
         public shirtColour: Colour = { name: 'white', value: "#FFFFFF" },
         public shirtStyle: string = '',
-        public graphic?: { name: string, colour: Colour, fileName: string },
-        public text?: { name: string, colour: Colour }
+        public graphic: Graphic =
+            { name: "", colour: { name: "", value: ""}, fileName: "" },
+        public text: Text = {
+            value: '',
+            colour: { name: 'black', value: '#444444'}, 
+            font: '"Montserrat", sans-serif'
+        }
     ) {}
+}
+
+export interface Text {
+    value: string,
+    colour: Colour,
+    font: string
+}
+
+export interface Graphic {
+    name: string,
+    colour: Colour,
+    fileName: string
 }
 
 export interface Colour {

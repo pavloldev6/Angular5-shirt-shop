@@ -22,11 +22,13 @@ export class DesignShirtComponent implements OnInit {
 
   colourPickerTitle: string = 'Choose a shirt colour';
 
-  constructor(private shirtService: ShirtService, private sanitizer: DomSanitizer, private renderer: Renderer2) { }
+  constructor(private shirtService: ShirtService, 
+      private sanitizer: DomSanitizer, 
+      private renderer: Renderer2) { }
 
   ngOnInit() {
     
-    this.activeTab = 3;
+    this.activeTab = 4;
     this.sub = this.shirtService.getEditableShirt().subscribe((shirt) => {
       this.editableShirt = shirt;
       
@@ -57,8 +59,20 @@ export class DesignShirtComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(path);
   }
 
+  getTextColour(): string {
+    return (this.editableShirt.text.colour ? this.editableShirt.text.colour.value : '');
+  }
+
+  getTextFont(): string {
+    return (this.editableShirt.text.font ? this.editableShirt.text.font : '');
+  }
+
   hasGraphic(): boolean {
     return (this.editableShirt.graphic ? this.editableShirt.graphic.name !== '' : false);
+  }
+
+  hasText(): boolean {
+    return (this.editableShirt.text ? this.editableShirt.text.value !== '' : false);
   }
 
 }

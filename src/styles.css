@@ -77,6 +77,11 @@ input {
     font-size: 12px;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+    border: 1px solid #CDCDCD;
+    border-radius: 4px;
+    height: 48px !important;
+    color: #10A2DC !important;
+    padding: 15px;
 }
 
 
@@ -87,7 +92,10 @@ input::-webkit-input-placeholder {
 }
 
 select {
-    color: #10A2DC;
+    color: #10A2DC !important;
+    font-size: 16px !important;
+    font-weight: bold;
+    height: 48px !important;
 }
 
 
@@ -186,4 +194,8 @@ eco-fab-speed-dial .eco-fab-speed-dial-container {
     margin-bottom: -40px !important;
     margin-left: -20px !important;
     z-index: 1039 !important;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
 }

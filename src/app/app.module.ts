@@ -35,6 +35,7 @@ import { PaymentCompleteComponent } from './components/payment-complete/payment-
 import { StylePickerComponent } from './components/style-picker/style-picker.component';
 import { ColourPickerComponent } from './components/colour-picker/colour-picker.component';
 import { GraphicsPickerComponent } from './components/graphics-picker/graphics-picker.component';
+import { TextPickerComponent } from './components/text-picker/text-picker.component';
 
 
 
@@ -67,7 +68,8 @@ const routes: Routes = [
     PaymentCompleteComponent,
     StylePickerComponent,
     ColourPickerComponent,
-    GraphicsPickerComponent
+    GraphicsPickerComponent,
+    TextPickerComponent
   ],
   imports: [
     BrowserModule,

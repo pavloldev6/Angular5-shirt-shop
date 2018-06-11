@@ -22,7 +22,7 @@ export class ShirtService {
         this.setShirts();
         this.editableShirt = new Shirt();
         this.editableShirt.shirtStyle = "MensShirt";
-        this.editableShirt.graphic = { name: "", colour: { name: "", value: ""}, fileName: "" };
+        this.editableShirt.graphic;
         this.editableShirtSubject = new BehaviorSubject(this.editableShirt);
     }
 
@@ -55,6 +55,15 @@ export class ShirtService {
     selectGraphicColour(colour: Colour): void {
         this.editableShirt.graphic.colour = colour;
         this.emitEditableShirt();
+    }
+
+    updateShirtText(text): void {
+        this.editableShirt.text.value = text.toUpperCase();
+        this.emitEditableShirt();
+    }
+
+    updateShirtTextFont(font): void {
+        this.editableShirt.text.font = font;
     }
 
     getStyleImagePath(style?): string {
