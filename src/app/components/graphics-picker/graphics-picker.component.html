@@ -5,7 +5,7 @@
   
   <div class="row graphics-picker-row">
     <div *ngFor="let graphic of graphics">
-      <div class="graphic-box">
+      <div class="graphic-box" (click)="pickGraphic(graphic)">
         <img class="graphic-box-img img-fluid" src="{{getGraphicImagePath(graphic)}}" alt="graphic image">
         <div class="graphic-selected" [hidden]="graphic.name !== editableShirt.graphic.name"></div>
       </div>
@@ -13,7 +13,7 @@
   </div>
   <hr class="no-margin-bottom">
   <div class="row">
-    <app-colour-picker [(selectedColour)]="editableShirt.graphic.colour"
+    <app-colour-picker [selectedColour]="editableShirt.graphic.colour" (selectedColourChange)="changedColour($event)"
       [title]="graphicColourTitle"></app-colour-picker>
   </div>
 </div>

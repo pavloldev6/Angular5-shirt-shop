@@ -13,14 +13,12 @@ export class ShippingInfoComponent implements OnInit {
   private states = REGIONS;
   private countries = COUNTRIES;
 
-  //@Output() triggerPaymentMethod;
   shippingInfoForm: FormGroup;
 
   selectedCountry = 'Select Option';
   selectedState = 'Select';
 
   constructor(private fb: FormBuilder, private slidingPanelsService: SlidingPanelsService) {
-    //this.triggerPaymentMethod = new EventEmitter();
   } 
 
   ngOnInit() {
@@ -48,7 +46,6 @@ export class ShippingInfoComponent implements OnInit {
 
   goToPayment(): void {
     this.slidingPanelsService.togglePaymentMethod(true);
-    //this.triggerPaymentMethod.emit();
   }
 
 }

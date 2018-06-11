@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Shirt } from '../shared/shirt';
+import { Shirt, Colour } from '../shared/shirt';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { SHIRTS } from '../constants/static-data.constants';
 
@@ -22,7 +22,7 @@ export class ShirtService {
         this.setShirts();
         this.editableShirt = new Shirt();
         this.editableShirt.shirtStyle = "MensShirt";
-        this.editableShirt.graphic = { name: "", colour: "", fileName: "" };
+        this.editableShirt.graphic = { name: "", colour: { name: "", value: ""}, fileName: "" };
         this.editableShirtSubject = new BehaviorSubject(this.editableShirt);
     }
 
@@ -47,17 +47,24 @@ export class ShirtService {
         this.emitEditableShirt();
     }
 
-    selectColour(colour: string): void {
+    selectColour(colour): void {
         this.editableShirt.shirtColour = colour;
         this.emitEditableShirt();
     }
 
+    selectGraphicColour(colour: Colour): void {
+        this.editableShirt.graphic.colour = colour;
+        this.emitEditableShirt();
+    }
+
     getStyleImagePath(style?): string {
-        return `${SHIRT_IMAGES_PATH}${(style) ? style.imgName : this.editableShirt.shirtStyle}-${this.editableShirt.shirtColour.toLowerCase()}.png`;
+        return `${SHIRT_IMAGES_PATH}${(style) ? style.imgName : this.editableShirt.shirtStyle}-${this.editableShirt.shirtColour.name.toLowerCase()}.png`;
     }
 
     getGraphicImagePath(graphic?): string {
-        return `${GRAPHICS_IMAGES_PATH}${(graphic) ? graphic.fileName : this.editableShirt.graphic.fileName}`;
+        const file = `${(graphic) ? graphic.fileName : 
+            (this.editableShirt.graphic.fileName !== '' ? this.editableShirt.graphic.fileName : '')}`;
+        return (file !== '') ? `${GRAPHICS_IMAGES_PATH}${file}` : '';
     }
 
     isStyleSelected(style): boolean {

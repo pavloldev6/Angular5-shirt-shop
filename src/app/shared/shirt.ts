@@ -1,3 +1,5 @@
+import { ColourPickerComponent } from "../components/colour-picker/colour-picker.component";
+
 export class Shirt {
 
     constructor(
@@ -7,9 +9,14 @@ export class Shirt {
         public price: number = 0,
         public imagePath: string = '',
         public gender?: 'M' | 'F',
-        public shirtColour: string = 'white',
+        public shirtColour: Colour = { name: 'white', value: "#FFFFFF" },
         public shirtStyle: string = '',
-        public graphic?: { name: string, colour: string, fileName: string },
-        public text?: { name: string, colour: string }
+        public graphic?: { name: string, colour: Colour, fileName: string },
+        public text?: { name: string, colour: Colour }
     ) {}
+}
+
+export interface Colour {
+    name: string,
+    value: string
 }

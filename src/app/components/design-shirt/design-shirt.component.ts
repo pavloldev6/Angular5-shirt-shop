@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ShirtService } from '../../core/shirt.service';
 import { Shirt } from '../../shared/shirt';
 import { Subscription } from 'rxjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 const FRACTAL_PATH = '../../../assets/images/Fractal.png';
 
@@ -17,16 +18,30 @@ export class DesignShirtComponent implements OnInit {
   activeTab: number;
   editableShirt: Shirt;
   sub: Subscription;
+  @ViewChild('graphicImage') graphicImage: ElementRef;
 
   colourPickerTitle: string = 'Choose a shirt colour';
 
-  constructor(private shirtService: ShirtService) { }
+  constructor(private shirtService: ShirtService, private sanitizer: DomSanitizer, private renderer: Renderer2) { }
 
   ngOnInit() {
+    
     this.activeTab = 3;
     this.sub = this.shirtService.getEditableShirt().subscribe((shirt) => {
       this.editableShirt = shirt;
+      
+      if (this.hasGraphic()) {
+        this.updateGraphicColour();
+      }
     });
+  }
+
+  updateGraphicColour(): void {
+    if (this.graphicImage.nativeElement) {
+      //this.graphicImage.nativeElement.contentDocument.firstChild.children[1].style.fill = this.editableShirt.graphic.colour;
+      this.renderer.setStyle(this.graphicImage.nativeElement.contentDocument.firstChild,
+      'fill', this.editableShirt.graphic.colour.value);
+    }
   }
 
   toggleTab(tabId: number): void {
@@ -35,6 +50,15 @@ export class DesignShirtComponent implements OnInit {
 
   getStyleImagePath(): string {
     return this.shirtService.getStyleImagePath();
+  }
+
+  getGraphicImagePath(graphic?): SafeUrl {
+    const path = this.editableShirt.graphic ? this.shirtService.getGraphicImagePath(graphic) : '';
+    return this.sanitizer.bypassSecurityTrustResourceUrl(path);
+  }
+
+  hasGraphic(): boolean {
+    return (this.editableShirt.graphic ? this.editableShirt.graphic.name !== '' : false);
   }
 
 }

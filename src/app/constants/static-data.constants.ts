@@ -112,3 +112,14 @@ export const GRAPHICS = [
     new Shirt(7, 'Smile', 'Mens Fine Jersey Short Sleeve', 15.99, '/assets/images/MensShirtDesigns-1.jpg', 'M'),
     new Shirt(8, 'Dabbing Skeleton', 'Mens Fine Jersey Short Sleeve', 19.99, '/assets/images/MensShirtDesigns-5.jpg', 'M'),
 ];
+
+export const COLOURS = [
+    { name: 'White', value: '#FFFFFF' }, 
+    { name: 'Grey', value: '#CDCDCD' }, 
+    { name: 'Black', value: '#444444' }, 
+    { name: 'Blue', value: '#2674A8' }, 
+    { name: 'Green', value: '#44A265' }, 
+    { name: 'Yellow', value: '#F4DA70' }, 
+    { name: 'Purple', value: '#6E5BD6' }, 
+    { name: 'Red', value: '#A7386B' }
+  ];

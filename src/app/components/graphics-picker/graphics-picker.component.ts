@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Shirt } from '../../shared/shirt';
+import { Shirt, Colour } from '../../shared/shirt';
 import { Subscription } from 'rxjs';
 import { ShirtService } from '../../core/shirt.service';
 import { GRAPHICS } from '../../constants/static-data.constants';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-graphics-picker',
@@ -25,8 +26,16 @@ export class GraphicsPickerComponent implements OnInit {
     });
   }
 
+  pickGraphic(graphic): void {
+    Object.assign(this.editableShirt.graphic, graphic);
+  }
+
   getGraphicImagePath(graphic): string {
     return this.shirtService.getGraphicImagePath(graphic);
+  }
+
+  changedColour(colour: Colour): void {
+    this.shirtService.selectGraphicColour(colour);
   }
 
 }

@@ -62,6 +62,7 @@
       <div class="design-col">
         <div class="card image-design">
           <img class="img-fluid" src="{{getStyleImagePath()}}" alt="shirt design">
+          <object #graphicImage class="img-fluid graphic-img" [hidden]="!hasGraphic()" [data]="getGraphicImagePath()" type="image/svg+xml"></object>
         </div>
       </div>
     </div>

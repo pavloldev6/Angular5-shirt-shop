@@ -1,10 +1,9 @@
-import { Component, OnInit, Output, OnDestroy, Renderer2, ViewChild, ElementRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { ShirtGenderPipe } from '../../filters/shirt-filter';
 import { Shirt } from '../../shared/shirt';
 import { ShirtService } from '../../core/shirt.service';
 import { Subscription } from 'rxjs';
 import { ShoppingCartService } from '../../core/shopping-cart.service';
-import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 import { SlidingPanelsService } from '../../core/sliding-panels.service';
 import { NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 
@@ -44,10 +43,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): any {
-    // this.shirts = this.shirtService.getShirts().reduce((array, shirt) => {
-    //   array.push(shirt);
-    //   return array;
-    // }, []);
     this.subscriptions.push(this.shirtService.getShirts().subscribe((result) => {
       this.shirts = result;
       this.updateDesignCount(this.catalogTabset.activeId);

@@ -115,3 +115,10 @@
     border: none;
     background-color: transparent;
 }
+
+.graphic-img {
+    position: absolute;
+    left: 27%;
+    top: 15%;
+    width: 45%;
+}
